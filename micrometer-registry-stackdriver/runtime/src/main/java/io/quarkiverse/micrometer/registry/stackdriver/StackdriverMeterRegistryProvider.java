@@ -36,12 +36,7 @@ public class StackdriverMeterRegistryProvider {
             properties.put(ENABLED, properties.get(PUBLISH));
         }
 
-        return ConfigAdapter.validate(new StackdriverConfig() {
-            @Override
-            public String get(String key) {
-                return properties.get(key);
-            }
-        });
+        return ConfigAdapter.validate(properties::get);
     }
 
     @Produces

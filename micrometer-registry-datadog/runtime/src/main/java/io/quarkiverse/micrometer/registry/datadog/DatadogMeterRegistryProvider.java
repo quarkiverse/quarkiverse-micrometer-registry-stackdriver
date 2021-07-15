@@ -36,12 +36,7 @@ public class DatadogMeterRegistryProvider {
             properties.put(ENABLED, properties.get(PUBLISH));
         }
 
-        return ConfigAdapter.validate(new DatadogConfig() {
-            @Override
-            public String get(String key) {
-                return properties.get(key);
-            }
-        });
+        return ConfigAdapter.validate(properties::get);
     }
 
     @Produces

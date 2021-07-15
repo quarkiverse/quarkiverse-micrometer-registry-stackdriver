@@ -46,6 +46,10 @@ h!Description
 !`instrumentation-key`
 !Define the instrumentation key used to push data to Azure Insights Monitor
 
+!`publish=true`
+!By default, gathered metrics will be published to Azure Monitor when the MeterRegistry is enabled.
+Use this attribute to selectively disable publication of metrics in some environments.
+
 !===
 
 Other Micrometer configuration attributes can also be specified.

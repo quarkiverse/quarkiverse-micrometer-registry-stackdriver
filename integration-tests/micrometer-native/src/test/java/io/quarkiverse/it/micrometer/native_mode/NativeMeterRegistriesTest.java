@@ -1,6 +1,6 @@
 package io.quarkiverse.it.micrometer.native_mode;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 
 import java.util.List;
 
@@ -23,9 +23,7 @@ class NativeMeterRegistriesTest {
     @Test
     void testRegistryInjection() {
         // We expect all 6 registries on the classpath to be initialized
-        Response response = given()
-                .when().get("/message/ping");
-
+        Response response = when().get("/message/ping");
         Assertions.assertEquals(200, response.statusCode());
 
         List<Object> registries = response.jsonPath().getList("$");
@@ -38,5 +36,20 @@ class NativeMeterRegistriesTest {
                 "io.micrometer.signalfx.SignalFxMeterRegistry",
                 "io.micrometer.stackdriver.StackdriverMeterRegistry",
                 "io.micrometer.statsd.StatsdMeterRegistry"));
+    }
+
+    @Test
+    void testRegistryBehavior() {
+        Response response = when().get("/rest/hello");
+        Assertions.assertEquals(200, response.statusCode());
+        Assertions.assertEquals("hello", response.body().asString());
+
+        response = when().get("/rest/goodbye");
+        Assertions.assertEquals(200, response.statusCode());
+        Assertions.assertEquals("goodbye", response.body().asString());
+
+        response = when().get("/rest/countthem");
+        Assertions.assertEquals(200, response.statusCode());
+        Assertions.assertEquals("ok", response.body().asString());
     }
 }
