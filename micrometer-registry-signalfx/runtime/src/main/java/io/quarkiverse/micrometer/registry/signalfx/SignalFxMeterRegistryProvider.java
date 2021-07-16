@@ -27,12 +27,7 @@ public class SignalFxMeterRegistryProvider {
     public SignalFxConfig configure(Config config) {
         final Map<String, String> properties = ConfigAdapter.captureProperties(config, PREFIX);
 
-        return ConfigAdapter.validate(new SignalFxConfig() {
-            @Override
-            public String get(String key) {
-                return properties.get(key);
-            }
-        });
+        return ConfigAdapter.validate(properties::get);
     }
 
     @Produces

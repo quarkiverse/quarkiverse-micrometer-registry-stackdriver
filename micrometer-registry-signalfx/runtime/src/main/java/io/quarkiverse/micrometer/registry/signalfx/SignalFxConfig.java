@@ -75,6 +75,10 @@ public class SignalFxConfig {
          * !Define the the URI to ship metrics to. Use this attribute to specify
          * the location of an internal proxy, if necessary.
          *
+         * !`publish=true`
+         * !By default, gathered metrics will be published to SignalFx when the MeterRegistry is enabled.
+         * Use this attribute to selectively disable publication of metrics in some environments.
+         *
          * !`step=1m`
          * !The interval at which metrics are sent to SignalFx Monitoring. The default is 1 minute.
          * !===

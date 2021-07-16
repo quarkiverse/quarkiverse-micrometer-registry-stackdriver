@@ -20,12 +20,24 @@ import io.quarkus.micrometer.runtime.export.ConfigAdapter;
 @Singleton
 public class GraphiteMeterRegistryProvider {
     static final String PREFIX = "quarkus.micrometer.export.graphite.";
+    static final String PUBLISH = "graphite.publish";
+    static final String ENABLED = "graphite.enabled";
 
     @Produces
     @Singleton
     @DefaultBean
     public GraphiteConfig configure(Config config) {
         final Map<String, String> properties = ConfigAdapter.captureProperties(config, PREFIX);
+
+        // Special check: if publish is set, override the value of enabled
+        // Specifically, the StackDriver registry must be enabled for this
+        // Provider to even be present. If this instance (at runtime) wants
+        // to prevent metrics from being published, then it would set
+        // quarkus.micrometer.export.stackdriver.publish=false
+        if (properties.containsKey(PUBLISH)) {
+            properties.put(ENABLED, properties.get(PUBLISH));
+        }
+
         return ConfigAdapter.validate(properties::get);
     }
 

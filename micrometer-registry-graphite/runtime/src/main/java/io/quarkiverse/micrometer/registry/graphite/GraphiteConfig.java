@@ -89,6 +89,10 @@ public class GraphiteConfig {
          * (valid values are PLAINTEXT, UDP and PICKLED).
          * The default to PICKLED.
          *
+         * !`publish=true`
+         * !By default, gathered metrics will be published to Graphite when the MeterRegistry is enabled.
+         * Use this attribute to selectively disable publication of metrics in some environments.
+         *
          * !`step=1m`
          * !The interval at which metrics are sent to Graphite.
          * Defaults to 1 minute.

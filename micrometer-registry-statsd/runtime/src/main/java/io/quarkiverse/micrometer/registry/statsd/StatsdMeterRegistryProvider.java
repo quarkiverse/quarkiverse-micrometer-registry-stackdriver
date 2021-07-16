@@ -35,12 +35,7 @@ public class StatsdMeterRegistryProvider {
             properties.put(ENABLED, properties.get(PUBLISH));
         }
 
-        return ConfigAdapter.validate(new StatsdConfig() {
-            @Override
-            public String get(String key) {
-                return properties.get(key);
-            }
-        });
+        return ConfigAdapter.validate(properties::get);
     }
 
     @Produces

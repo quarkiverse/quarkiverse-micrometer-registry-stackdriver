@@ -79,6 +79,10 @@ public class StackdriverConfig {
          * !By default, gathered metrics will be published to Stackdriver when the MeterRegistry is enabled.
          * Use this attribute to selectively disable publication of metrics in some environments.
          *
+         * !`publish=true`
+         * !By default, gathered metrics will be published to Stackdriver Monitoring when the MeterRegistry is enabled.
+         * Use this attribute to selectively disable publication of metrics in some environments.
+         *
          * !`step=1m`
          * !The interval at which metrics are sent to Stackdriver Monitoring. The default is 1 minute.
          * !===

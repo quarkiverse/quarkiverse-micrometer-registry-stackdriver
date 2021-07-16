@@ -1,3 +1,3 @@
-:quarkus-version: 2.0.0.Final
-:quarkus-micrometer-registry-version: 2.0.0.CR3
+:quarkus-version: 2.0.2.Final
+:quarkus-micrometer-registry-version: 2.0.2
 
